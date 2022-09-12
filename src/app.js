@@ -26,6 +26,7 @@ app.get("/myActivities", (req, res) => res.status(200).json({ activities }));
 
 app.get("/myActivities/:id", (req, res) => {
   const activity = activities.find((e) => e.id === Number(req.params.id));
+  // retorna a requisicao com metodo res.status(200) no formato json
   res.status(200).json(activity);
 });
 
