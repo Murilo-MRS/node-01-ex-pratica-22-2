@@ -30,6 +30,25 @@ app.get("/myActivities/:id", (req, res) => {
   res.status(200).json(activity);
 });
 
+app.get("/filter/myActivities", (req, res) => {
+  const { status } = req.query;
+  let fileredActivies = activities;
+
+  if (status) {
+    fileredActivies = activities.filter((e) => e.status === status);
+  }
+  res.status(200).json({ activities: fileredActivies });
+});
+
+app.get("/search/myActivities", (req, res) => {
+    const {q} = req.query;
+    console.log(q);
+    let searchActivies = [];
+    if (q) {
+        searchActivies = activities.filter((e) => e.description.includes(q))
+    }
+    res.status(200).json({ activities: searchActivies })
+})
 // app.post('/activities', (req, res) => {
 //     const newActivity = { ...req.body };
 //     activities.push(newActivity);
